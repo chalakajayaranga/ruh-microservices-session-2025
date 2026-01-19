@@ -13,7 +13,7 @@ This repository contains two microservices: `invoicing-service` and `payment-ser
 
 1. Clone the repository:
    ```
-   ssh git clone https://github.com/ChalakaKasthuriArachchi/ruh-microservices-session-2025
+   git clone https://github.com/ChalakaKasthuriArachchi/ruh-microservices-session-2025
    cd RUH-MICROSERVICES-SESSION-2025
 
 2. Build & run the services using Docker Compose
