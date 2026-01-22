@@ -1,6 +1,6 @@
 # RUH Microservices Session 2025
 
-This repository contains two microservices: `invoicing-service` and `payment-service`. These services communicate with each other using RabbitMQ for message passing.
+This repository contains two microservices (`invoicing-service` and `payment-service`) and a web application (`invoicing-web`). The services communicate with each other using RabbitMQ for message passing.
 
 ## Running the Services
 
@@ -21,13 +21,10 @@ This repository contains two microservices: `invoicing-service` and `payment-ser
     ```
     docker compose up --build -d
 
-3. Access the Invoice service using Rest API
-    ```
-    http://localhost:8080
-
-5. Access swagger API documentation
-    ```
-    http://localhost:8080/swagger
+3. Access the services:
+    - **Invoice Service Home**: http://localhost:8080
+    - **Swagger API Documentation**: http://localhost:8080/doc
+    - **Invoice Manager Web App**: http://localhost:5173
 
 4. Stop all services
     ```
@@ -63,11 +60,37 @@ The `payment-service` is responsible for processing payments. It listens for pay
 - **Technologies:**
   - .NET 8
   - RabbitMQ
+  - React
 
 - **Key Files:**
   - [PaymentRequestConsumer.cs](payment-service/Services/PaymentRequestConsumer.cs)
   - [PaymentAckService.cs](payment-service/Services/PaymentAckService.cs)
 
+### Invoicing Web Application
+
+The `invoicing-web` is a modern React application that provides a user-friendly interface for managing invoices.
+
+- **Features:**
+  - Table view for displaying all invoices with status badges
+  - Create new invoices with auto-focused input field
+  - View detailed invoice information
+  - Real-time updates with automatic polling (every 500ms)
+  - Keyboard shortcut (F1) to quickly create invoices
+  - Responsive design for desktop and mobile
+
+- **Technologies:**
+  - React 19
+  - TypeScript
+  - Vite
+  - TanStack Query
+  - Tailwind CSS
+  - Nginx (for production Docker deployment)
+
+- **Key Files:**
+  - [InvoiceList.tsx](invoicing-web/src/components/InvoiceList.tsx) - Table view component
+  - [CreateInvoiceForm.tsx](invoicing-web/src/components/CreateInvoiceForm.tsx) - Invoice creation form
+  - [InvoiceDetail.tsx](invoicing-web/src/components/InvoiceDetail.tsx) - Invoice details view
+  - [Dockerfile](invoicing-web/Dockerfile) - Docker configuration
 
 ## Appendix
 

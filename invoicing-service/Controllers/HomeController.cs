@@ -58,13 +58,27 @@ public class HomeController : ControllerBase
         a:hover {
             background-color: #0056b3;
         }
+        .links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        a.secondary {
+            background-color: #28a745;
+        }
+        a.secondary:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
     <div class=""container"">
         <h1>Welcome to the invoicing service!</h1>
         <p>This is the Invoicing Service API. You can explore the API documentation using Swagger.</p>
-        <a href=""/doc"">View API Documentation</a>
+        <div class=""links"">
+            <a href=""/doc"">View API Documentation</a>
+            <a href=""http://localhost:5173"" class=""secondary"" target=""_blank"">Invoice Manager Web App</a>
+        </div>
     </div>
 </body>
 </html>";

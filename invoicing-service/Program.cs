@@ -11,6 +11,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173", "http://localhost:3000", "http://localhost:5174")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("InMemoryDb"));
 
@@ -39,6 +51,8 @@ builder.Services.AddHostedService<PaymentAckConsumer>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseCors("AllowReactApp");
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

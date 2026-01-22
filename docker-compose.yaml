@@ -36,7 +36,22 @@ services:
     networks:
       - my-network
     #deploy:
-    #  replicas: 2
+    #  replicas: 4
+
+  invoicing-web:
+    container_name: invoicing-web
+    image: invoicing-web
+    build:
+      context: invoicing-web
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=http://localhost:8080
+    ports:
+      - "5173:80"
+    depends_on:
+      - invoicing-service
+    networks:
+      - my-network
 
 networks:
     my-network:
